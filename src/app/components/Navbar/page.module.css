@@ -1,0 +1,96 @@
+.container{
+    display: flex;
+    height: 100px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+ }
+ 
+ .logo{
+     font-size: 30px;
+     font-weight: bold;
+ }
+ 
+ .links{
+     display: flex;
+     gap: 20px;
+     align-items: center;
+ }
+ 
+ .logout{
+     padding: 5px;
+     border: none;
+     background-color: #53c28b;
+     cursor: pointer;
+     border-radius: 4px;
+ }
+ 
+ /* Media queries for responsiveness */
+ 
+ /* Extra small devices (phones, less than 576px) */
+ @media (max-width: 575.98px) {
+   .container {
+     flex-direction: column;
+     height: auto;
+     gap: 10px;
+   }
+   .logo {
+     font-size: 24px;
+   }
+   .links {
+     flex-direction: column;
+     gap: 10px;
+   }
+   .logout {
+     padding: 10px;
+   }
+ }
+ 
+ /* Small devices (tablets, 576px and up) */
+ @media (min-width: 576px) and (max-width: 767.98px) {
+   .container {
+     height: 80px;
+   }
+   .logo {
+     font-size: 26px;
+   }
+   .links {
+     gap: 15px;
+   }
+   .logout {
+     padding: 8px;
+   }
+ }
+ 
+ /* Medium devices (landscape tablets, 768px and up) */
+ @media (min-width: 768px) and (max-width: 991.98px) {
+   .container {
+     height: 90px;
+   }
+   .logo {
+     font-size: 28px;
+   }
+   .links {
+     gap: 18px;
+   }
+   .logout {
+     padding: 6px;
+   }
+ }
+ 
+ /* Large devices (desktops, 992px and up) */
+ @media (min-width: 992px) {
+   .container {
+     height: 100px;
+   }
+   .logo {
+     font-size: 30px;
+   }
+   .links {
+     gap: 20px;
+   }
+   .logout {
+     padding: 5px;
+   }
+ }
+ 
