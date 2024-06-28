@@ -1,6 +1,5 @@
 import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google"
-// console.log(process.env.GOOGLE_CLIENT_ID);
  const handler = NextAuth({
     providers: [
         
@@ -8,7 +7,8 @@ import GoogleProvider from "next-auth/providers/google"
             clientId: process.env.GOOGLE_CLIENT_ID,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET
         })
-    ]
+    ],
+    pages:'/auth/signIn'
 })
  
 export {handler as GET , handler as POST}
