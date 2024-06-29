@@ -22,12 +22,13 @@ async function getData() {
 const blog = async () => {
     const blogs = await getData()
     // filter data  1 to 10 only
-      const data = blogs.filter(item => item.id <= 10)
+    //   const data = blogs.filter(item => item.id <= 10)
+    
     //   console.log('newData:', data)
     
     return (
         <div className='contain'>
-            {data.map(item => (
+            {blogs.map(item => (
                 <div key={item.id} className={styles.container}>
                     <Link href={`/blog/${item._id}`} className={styles.container} key={'item._id'}>
                         <div className={styles.imageContainer}>

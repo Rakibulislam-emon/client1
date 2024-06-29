@@ -3,8 +3,15 @@ import Link from 'next/link';
 import React from 'react'
 import style from './page.module.css'
 import DarkMode from '../DarkMode/DarkMode';
+import { signIn, signOut, useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 function Navbar() {
-
+  const router = useRouter()
+const session = useSession()
+  console.log('session:', session.status)
+   const handleRedirect = () => {
+    router.push('/dashboard/login')
+  }
   return (
     <div className={style.container}>
       {/* logo */}
@@ -22,9 +29,11 @@ function Navbar() {
           ))
         }
 
-        <button className={style.logout} onClick={() => ("logout")}>
+       {session.status === "authenticated" ? <button  className={style.logout} onClick={() => signOut()}>
           logout
-        </button>
+        </button> :  <button  className={style.logout} onClick={handleRedirect}>
+          Login
+        </button>} 
       </div>
     </div>
   )

@@ -3,35 +3,44 @@ import React, { useState } from "react";
 import styles from "./page.module.css";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import axios from "axios";
 
 const Register = () => {
   const [error, setError] = useState(null);
-
   const router = useRouter();
 
   const handleSubmit = async (e) => {
-    // e.preventDefault();
-    // const name = e.target[0].value;
-    // const email = e.target[1].value;
-    // const password = e.target[2].value;
+    e.preventDefault();
+    const username = e.target[0].value;
+    const email = e.target[1].value;
+    const password = e.target[2].value;
+    console.log(username, email, password);
+    try {
 
-    // try {
-    //   const res = await fetch("/api/auth/register", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({
-    //       name,
-    //       email,
-    //       password,
-    //     }),
-    //   });
-    //   res.status === 201 && router.push("/dashboard/login?success=Account has been created");
-    // } catch (err) {
-    //   setError(err);
-    //   console.log(err);
-    // }
+     
+      const res = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: {
+          // "Content-Type": "application/json",
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: username,
+          email,
+          password,
+        }),
+      });
+      console.log(res);
+      if (res.status === 201) {
+        router.push("/dashboard/login?success=Account has been created");
+      } else {
+        const data = await res.json();
+        setError(data.message || "Something went wrong!");
+      }
+    } catch (err) {
+      console.log('err:', err)
+      setError(err.message || "Something went wrong!");
+    }
   };
 
   return (
@@ -46,7 +55,7 @@ const Register = () => {
           className={styles.input}
         />
         <input
-          type="text"
+          type="email"
           placeholder="Email"
           required
           className={styles.input}
@@ -58,7 +67,7 @@ const Register = () => {
           className={styles.input}
         />
         <button className={styles.button}>Register</button>
-        {error && "Something went wrong!"}
+        {error && <p className={styles.error}>{error}</p>}
       </form>
       <span className={styles.or}>- OR -</span>
       <Link className={styles.link} href="/dashboard/login">
